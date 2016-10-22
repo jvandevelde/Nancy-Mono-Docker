@@ -1,0 +1,1 @@
+docker run -d -p 8081:8081 -e environment=demo -e esConnection=esNameHere --name nancyfx-mono docker-nancy-mono
