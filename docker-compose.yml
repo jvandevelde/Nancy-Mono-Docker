@@ -1,0 +1,16 @@
+version: '2'
+services:
+  nancy-demo:
+    build: ./
+    image: nancy-demo
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      environment: "demo"
+      esConnection: "http://elasticsearch:9200"
+  elasticsearch:
+    image: elasticsearch
+    ports:
+      - "9200:9200"
+    restart: always

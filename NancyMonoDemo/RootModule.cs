@@ -7,6 +7,8 @@ namespace NancyMonoDemo
     {
         public string OsVersion { get; set; }
         public string[] EnvironmentVariables { get; set; }
+        public DateTime RequestTime { get; set; }
+        public string IndexingResult { get; set; }
     }
 
     public class RootModule : NancyModule
@@ -25,12 +27,24 @@ namespace NancyMonoDemo
                     {
                         env,
                         connStr
-                    }
+                    },
+                    RequestTime = DateTime.Now
                 };
 
+                // log to ES
+                var es = ElasticsearchClientProvider.Instance;
+                if (es != null)
+                {
+                    var indexResult = es.Index(result);
+                    result.IndexingResult = indexResult.DebugInformation;
+                    Console.WriteLine(result.IndexingResult);
+                }
+                else
+                {
+                    Console.WriteLine("No ES connection string found");
+                }
                 return Response.AsJson(result);
             };
-
         }
     }
 }
