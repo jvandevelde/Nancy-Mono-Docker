@@ -1,12 +1,18 @@
 # Nancy-Mono-Docker
 Self-hosted NancyFx web application sample running on Mono via Docker
 
+Logs requests to both Elasticsearch and a RDBMS managed by Entity Framework. The default database
+engine is PostgreSql but can be switched out in the web.config
+
 # Getting started
 There are a couple ways you can run the demo using Docker. The easiest is via
-Docker Compose, which will automatically start the demo app as well as an Elasticsearch
-instance to log requests to.
+Docker Compose, which will:
+  1. automatically start the demo web service located at http://{docker-ip}:8081 
+  2. Start a default Elasticsearch instance
+  3. Start a vanilla PostgreSql instance
+All page requests made to the root of the demo app will be logged to both Elasticsearch and Postgres.
 
-You can also manually start each container using the second method below to build/run the 
+If you'd like, you can always manually start each container using the second method below to build/run the 
 demo application in Docker
 
 # 1 - Using Docker Compose to orchestrate multiple containers
@@ -45,7 +51,8 @@ compose up/down requests. There are no persistent volumes defined.
   - Will launch a container from the image created above and bind to http://{docker-ip}:8081
   - Container will be named `nancyfx-mono`
   - Use `docker ps -all` to view running images
-  
+5. Use `docker run ...` to start a default Elasticsearch and Postgres container
+ 
 Navigate to http://{docker-ip}:8081 in a browser to see the demo page which will display OS + some environment 
 variables that were passed into the `docker run` command in ./run-docker.cmd
 

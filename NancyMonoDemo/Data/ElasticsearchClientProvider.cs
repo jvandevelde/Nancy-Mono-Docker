@@ -4,7 +4,7 @@ using System.Text;
 using Elasticsearch.Net;
 using Nest;
 
-namespace NancyMonoDemo
+namespace NancyMonoDemo.Data
 {
     public static class ElasticsearchClientProvider
     {
