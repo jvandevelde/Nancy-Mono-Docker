@@ -7,9 +7,11 @@ engine is PostgreSql but can be switched out in the web.config
 # Getting started
 There are a couple ways you can run the demo using Docker. The easiest is via
 Docker Compose, which will:
+
   1. automatically start the demo web service located at http://{docker-ip}:8081 
   2. Start a default Elasticsearch instance
   3. Start a vanilla PostgreSql instance
+
 All page requests made to the root of the demo app will be logged to both Elasticsearch and Postgres.
 
 If you'd like, you can always manually start each container using the second method below to build/run the 
